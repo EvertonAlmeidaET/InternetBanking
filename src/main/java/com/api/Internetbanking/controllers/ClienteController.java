@@ -66,7 +66,7 @@ public class ClienteController {
 	 * 
 	 */
 	@GetMapping
-	//@Operation(description ="Retorna uma lista de Cliente")
+	@Operation(description ="Retorna uma lista de Cliente")
 	public ResponseEntity<Page<Cliente>> getRetornaTodosClientes(@PageableDefault
 			(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
 		return ResponseEntity.status(HttpStatus.OK).body(clienteService.findAll(pageable));
@@ -80,7 +80,7 @@ public class ClienteController {
 	 * Metodo responsavel por retornar um cliente pesquisando pelo ID.
 	 */
 	@GetMapping("/{id}")
-	//@Operation(description ="Retorna um Cliente")
+	@Operation(description ="Retorna um Cliente")
 	public ResponseEntity<Object> getRetornaCliente(@PathVariable(value = "id") Long id){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		
@@ -98,7 +98,7 @@ public class ClienteController {
 	 * Metodo responsavel por deletar um cliente pelo seu ID.
 	 */
 	@DeleteMapping("/{id}")
-	//@Operation(description ="Deleta um cliente")
+	@Operation(description ="Deleta um cliente")
 	public ResponseEntity<Object> getDeletaCliente(@PathVariable(value = "id") Long id){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		
@@ -119,7 +119,7 @@ public class ClienteController {
 	 * Metodo responsavel por retornar um cliente pesquisando pelo ID.
 	 */
 	@PutMapping("/{id}")
-	//@Operation(description ="Atualiza os dados de um cliente")
+	@Operation(description ="Atualiza os dados de um cliente")
 	public ResponseEntity<Object> getAtualizarCliente(@PathVariable(value = "id") Long id, @RequestBody @Valid ClienteDto clienteDto){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		
@@ -144,7 +144,7 @@ public class ClienteController {
 	 * Metodo responsavel por efetuar os saques da conta.
 	 */
 	@PutMapping("/saque/{id}/{valor}")
-	//@Operation(description ="Sacar um valor")
+	@Operation(description ="Sacar um valor")
 	public ResponseEntity<Object> getSaqueValor(@PathVariable(value = "id") Long id, @PathVariable(value = "valor") BigDecimal valor){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		
@@ -167,7 +167,7 @@ public class ClienteController {
 	 * 
 	 */
 	@PutMapping("/deposito/{id}/{valor}")
-	//@Operation(description ="Depositar um valor")
+	@Operation(description ="Depositar um valor")
 	public ResponseEntity<Object> getDepositoValor(@PathVariable(value = "id") Long id, @PathVariable(value = "valor") BigDecimal valor){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		
@@ -191,7 +191,7 @@ public class ClienteController {
 	 * 
 	 */
 	@PutMapping("/transferencia/{id}/{valor}/{id2}")
-	//@Operation(description ="Trasnferir valor para outra conta")
+	@Operation(description ="Trasnferir valor para outra conta")
 	public ResponseEntity<Object> getTrasnferirValor(@PathVariable(value = "id") Long id, @PathVariable(value = "valor") BigDecimal valor, @PathVariable(value = "id2") Long id2){
 		Optional<Cliente> clienteOptional = clienteService.findById(id);
 		Optional<Cliente> clienteOptional2 = clienteService.findById(id2);
